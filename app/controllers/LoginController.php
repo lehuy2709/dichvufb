@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
                 header("Location:" . BASE_URL . "dang-nhap");
                 die;
             }
+        
             if (password_verify($_POST["pass"], $user->password)) {
                 if ($user->role == 1) {
                     $_SESSION["admin_id"] = $user->id;
@@ -83,6 +84,7 @@ use Illuminate\Support\Facades\Redirect;
             }
             $_SESSION['success'] = "Đăng ký thành công";
             User::create([
+                "balance"=>0,
                 "username" => $_POST["username"],
                 "email" => $_POST["email"],
                 "role" => 2,

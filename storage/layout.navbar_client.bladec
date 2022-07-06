@@ -1,52 +1,46 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
  <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
- <a class="sidebar-brand brand-logo" href="index.html"><img src="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>public/admin/assets/images/logo.svg" alt="logo" /></a>
- <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img src="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>public/admin/assets/images/logo-mini.svg" alt="logo" /></a>
+ <a class="sidebar-brand brand-logo" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>home"><img src="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>public/admin/assets/images/logo.svg" alt="logo" /></a>
+ <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>home"><img src="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>public/admin/assets/images/logo-mini.svg" alt="logo" /></a>
  </div>
  <ul class="nav">
  <li class="nav-item nav-profile">
  <a href="#" class="nav-link">
  <div class="nav-profile-image">
- <img src="<?php echo \htmlentities(IMG_URL, ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($_SESSION['user_avatar'], ENT_QUOTES, 'UTF-8', false); ?>" alt="profile" />
+ <img src="<?php echo \htmlentities(IMG_URL, ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($user->avatar, ENT_QUOTES, 'UTF-8', false); ?>" alt="profile" />
  <span class="login-status online"></span>
  <!--change to offline or busy as needed-->
  </div>
  <div class="nav-profile-text d-flex flex-column pr-3">
- <span class="font-weight-medium mb-2"><?php echo \htmlentities($_SESSION["user_name"], ENT_QUOTES, 'UTF-8', false); ?></span>
- <span class="font-weight-normal"><?php echo \htmlentities(number_format($_SESSION["balance"]), ENT_QUOTES, 'UTF-8', false); ?> $</span>
+ <span class="font-weight-medium mb-2"><?php echo \htmlentities($user->username, ENT_QUOTES, 'UTF-8', false); ?></span>
+ <span class="font-weight-normal"><?php echo \htmlentities(number_format($user->balance), ENT_QUOTES, 'UTF-8', false); ?> $</span>
  </div>
  <span class="badge badge-danger text-white ml-3 rounded">Member</span>
  </a>
  </li>
  <li class="nav-item">
- <a class="nav-link" href="">
+ <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>home">
  <i class="mdi mdi-home menu-icon"></i>
- <span class="menu-title">Dashboard</span>
+ <span class="menu-title">Trang Chủ</span>
  </a>
  </li>
 
  <li class="nav-item">
- <a class="nav-link" href="">
- <i class="mdi mdi-buffer menu-icon"></i>
- <span class="menu-title">Danh Mục</span>
+ <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>order/history">
+ <i class="mdi mdi-file-document-box menu-icon"></i>
+ <span class="menu-title">Lịch sử đơn hàng</span>
  </a>
  </li>
  <li class="nav-item">
- <a class="nav-link" href="">
- <i class="mdi mdi-package-variant-closed menu-icon"></i>
- <span class="menu-title">Dịch Vụ</span>
+ <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>user/banking">
+ <i class="mdi mdi-cash menu-icon"></i>
+ <span class="menu-title">Nạp Tiền</span>
  </a>
  </li>
  <li class="nav-item">
- <a class="nav-link" href="">
- <i class="mdi mdi-chart-bar menu-icon"></i>
- <span class="menu-title">Gói dịch vụ</span>
- </a>
- </li>
- <li class="nav-item">
- <a class="nav-link" href="">
- <i class="mdi mdi-table-large menu-icon"></i>
- <span class="menu-title">Tables</span>
+ <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>user/history">
+ <i class="mdi mdi-history menu-icon"></i>
+ <span class="menu-title">Lịch sử giao dịch</span>
  </a>
  </li>
  <li class="nav-item">
@@ -69,7 +63,7 @@
  foreach($__currentLoopData as $ser): $loop = $this->incrementLoopIndices();  ?>
  <ul class="nav flex-column sub-menu">
  <li class="nav-item">
- <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($cate->slug, ENT_QUOTES, 'UTF-8', false); ?>/<?php echo \htmlentities($ser->slug, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($ser->name, ENT_QUOTES, 'UTF-8', false); ?></a>
+ <a class="nav-link" href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>service/<?php echo \htmlentities($cate->slug, ENT_QUOTES, 'UTF-8', false); ?>/<?php echo \htmlentities($ser->slug, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($ser->name, ENT_QUOTES, 'UTF-8', false); ?></a>
  </li>
  </ul>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
@@ -86,10 +80,13 @@
  <div class="nav-link">
  <div class="mt-4">
  <div class="border-none">
- <p class="text-black">Notification</p>
+ <p class="text-black"><i class="mdi mdi-video menu-icon"></i><a href="https://www.youtube.com/watch?v=K7ihNOjgoS8" style="color: rgb(0, 0, 0)">Video hướng dẫn sử dụng</a> </p>
+ </div>
+ <div class="border-none">
+ <p class="text-black"><a href="https://www.facebook.com/hi.im.huy.dzz/" style="color: red">Liên hệ hỗ trợ</a> </p>
  </div>
  <ul class="mt-4 pl-0">
- <li><a href="dang-xuat">Sign Out</a> </li>
+ <li><a href="<?php echo \htmlentities(BASE_URL, ENT_QUOTES, 'UTF-8', false); ?>dang-xuat">Sign Out</a> </li>
  </ul>
  </div>
  </div>

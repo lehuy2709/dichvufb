@@ -95,6 +95,7 @@
           document.documentElement.msRequestFullscreen();
         }
       } else {
+        
         if (document.cancelFullScreen) {
           document.cancelFullScreen();
         } else if (document.mozCancelFullScreen) {

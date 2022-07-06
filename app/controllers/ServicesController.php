@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Categories;
+use App\Models\Packages;
 use App\Models\Services;
+use Illuminate\Support\Facades\Response;
 
 class ServicesController
 {
@@ -71,7 +73,10 @@ class ServicesController
         die;
 
     }
-
+    public function getPackagePrice(){
+        $package = Packages::find($_GET['id']);
+        echo json_encode($package);
+    }   
 
 }
 ?>
